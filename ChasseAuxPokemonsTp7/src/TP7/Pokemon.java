@@ -1,5 +1,5 @@
 package TP7;
-
+import Plaque.*;
 import java.util.ArrayList;
 
 import Attaque.Attaque;
@@ -445,5 +445,9 @@ public class Pokemon {
 	public void retirer(){
 		this.sonItem.desequipe();
 		this.sonItem=null;
+	}
+
+	public void setSonItem(ItemEquipable sonItem) {
+		this.sonItem = sonItem;
 	}
 }
