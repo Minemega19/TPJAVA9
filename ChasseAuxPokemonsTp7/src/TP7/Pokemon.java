@@ -282,7 +282,7 @@ public class Pokemon {
 		int i = 0;
 		
 		if (a.estCompatible(this)) {
-			while(!ajoute && i < this.sesAttaques.size() && this.sesAttaques.size()<= 4) {
+			while(!ajoute && i < this.sesAttaques.size() && this.sesAttaques.size()<= Constant.MAX_ATTAQUE) {
 				if (null == sesAttaques.get(i)) {
 					sesAttaques.add(i, a);
 					ajoute = true;
