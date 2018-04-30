@@ -17,13 +17,31 @@ public abstract class Plaque extends ItemEquipable {
 		boolean estCompatible = false;
 		if(p.getType()==this.type)
 			estCompatible=true;
+			try{
+				if(p.getType()==this.type)
+				estCompatible=true;
+			}catch (NullPointerException e) {
+		}
 		return estCompatible;
 	}
 	
 	public String getType() {
 		return type;
 	}
-
+	@Override
+	public void equipe(Pokemon p) {
+		if (this.estCompatible(p))
+			super.equipe(p);
+	    else
+			System.out.println("Pokemon non compatible");
+		}
+		@Override
+		public void setPokemonEquipe(Pokemon pokemonEquipe) {
+			if (this.estCompatible(pokemonEquipe))
+				super.setPokemonEquipe(pokemonEquipe);
+			else
+				System.out.println("Pokemon non Compatible");
+		}
 	public void setType(String type) {
 		this.type = type;
 	}

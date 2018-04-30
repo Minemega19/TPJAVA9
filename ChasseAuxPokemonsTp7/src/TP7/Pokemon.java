@@ -446,4 +446,7 @@ public class Pokemon {
 		this.sonItem.desequipe();
 		this.sonItem=null;
 	}
+	public void setSonItem(ItemEquipable sonItem) {
+		this.sonItem = sonItem;
+	}
 }

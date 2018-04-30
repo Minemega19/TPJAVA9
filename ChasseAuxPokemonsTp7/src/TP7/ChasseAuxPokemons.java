@@ -14,6 +14,7 @@ import Attaque.AttaqueTornadeFeuilles;
 import Item.Item;
 import Item.ItemEquipable;
 import Item.ItemVetement;
+import Plaque.PlaqueAtk;
 
 public class ChasseAuxPokemons {
 
@@ -70,7 +71,13 @@ public class ChasseAuxPokemons {
 		final ItemVetement cape = new ItemVetement("Cape", 30, 5,"Bleu");
 		System.out.println(cape);
 		
+		piplup.attribue(cape);
+		System.out.println(piplup.getSonItem().getNom());
+		
 		final ItemEquipable roller = new ItemEquipable("Roller", 30, 2,piplup);
 		System.out.println(roller);
+		final PlaqueAtk plaqueFeu = new PlaqueAtk("plaque feu", 30," feu");
+		rowlet.attribue(plaqueFeu);
+		rowlet.retirer();
 	}
 }
