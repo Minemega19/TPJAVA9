@@ -1,5 +1,7 @@
 package TP7;
 
+import java.util.ArrayList;
+
 import Attaque.Attaque;
 import Item.ItemEquipable;
 
@@ -19,14 +21,14 @@ public class Pokemon {
 	private int speDefense;
 	private int hp;
 	private int frequency;
-	private Attaque[] sesAttaques;
+	private ArrayList<Attaque> sesAttaques;
 	private ItemEquipable sonItem;
 	
-	public Pokemon (String nom, String type, int niveau, boolean diurne, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, Attaque[] sesAttaques) {
+	public Pokemon (String nom, String type, int niveau, boolean diurne, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, ArrayList<Attaque> sesAttaques) {
 		this(nom, type, niveau, diurne, null, null, attack, defense, speAttack, speDefense, 30, frequency, sesAttaques);
 	}
 	
-	public Pokemon (String nom, String type, int niveau, boolean diurne, String nomDonne, Joueur monJoueur, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, Attaque[] sesAttaques) {
+	public Pokemon (String nom, String type, int niveau, boolean diurne, String nomDonne, Joueur monJoueur, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, ArrayList<Attaque> attaques) {
 		this.nom=nom;
 		this.type=type;
 		this.niveau=niveau;
@@ -42,16 +44,17 @@ public class Pokemon {
 		this.speDefense=speDefense;
 		this.hp=30;
 		this.frequency=frequency;
-		this.sesAttaques= new Attaque[4];
-		for (int i = 0; i < sesAttaques.length; i++) {
-			if (i < this.sesAttaques.length) {
-				this.addAttaque(sesAttaques[i]);
+		this.sesAttaques= new ArrayList<Attaque>();
+		for (int i = 0; i < attaques.size(); i++) {
+			if (i < this.sesAttaques.size()) {
+				this.addAttaque(attaques.get(i));
 			}
 		}
 		
 	}
-	public Pokemon(String nom, String type, int niveau, boolean diurne, String nomDonne, Joueur monJoueur, int appetit, int satisfaction, int loyaute, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, Attaque[] sesAttaques, ItemEquipable sonItem) {
+	public Pokemon(String nom, String type, int niveau, boolean diurne, String nomDonne, Joueur monJoueur, int appetit, int satisfaction, int loyaute, int attack, int defense, int speAttack, int speDefense, int hp, int frequency, ArrayList<Attaque> sesAttaques, ItemEquipable sonItem) {
 				super();
+				int i = 0;
 				this.nom = nom;
 				this.type = type;
 				this.niveau = niveau;
@@ -67,7 +70,10 @@ public class Pokemon {
 				this.speDefense = speDefense;
 				this.hp = hp;
 				this.frequency = frequency;
-				this.sesAttaques = sesAttaques;
+				while (i < sesAttaques.size()){
+					this.addAttaque(sesAttaques.get(i)) ;
+				}
+				
 				this.sonItem = sonItem;
 	}
 	public int getAppetit () {
@@ -162,9 +168,9 @@ public class Pokemon {
 		
 		resultat += " Ce pokemon a une attaque de " + this.attack + ", une defense de " + this.defense + ", une attaque speciale de " + this.speAttack + ", une defense speciale " + this.speDefense + " et les attaques suivantes : " ;
 		
-		for (int i = 0; i < this.sesAttaques.length; i++) {
-			if (null != this.sesAttaques[i]) {
-				resultat += this.sesAttaques[i].getNom() + ", ";
+		for (int i = 0; i < this.sesAttaques.size(); i++) {
+			if (null != this.sesAttaques.get(i)) {
+				resultat += this.sesAttaques.get(i).getNom() + ", ";
 			}
 		}
 		
@@ -262,8 +268,8 @@ public class Pokemon {
 		int premierePlace = -1; // =pas de place
 		int i = 0;
 		
-		while (premierePlace == -1 && i<this.sesAttaques.length) {
-			if (null == this.sesAttaques[i])
+		while (premierePlace == -1 && i<this.sesAttaques.size()) {
+			if (null == this.sesAttaques.get(i))
 				premierePlace = i;
 			i++;
 		}
@@ -276,9 +282,9 @@ public class Pokemon {
 		int i = 0;
 		
 		if (a.estCompatible(this)) {
-			while(!ajoute && i < this.sesAttaques.length) {
-				if (null == sesAttaques[i]) {
-					sesAttaques[i] = a;
+			while(!ajoute && i < this.sesAttaques.size() && this.sesAttaques.size()<= 4) {
+				if (null == sesAttaques.get(i)) {
+					sesAttaques.add(i, a);
 					ajoute = true;
 				}
 				i++;
@@ -295,8 +301,8 @@ public class Pokemon {
 	}
 	
 	public void removeAttack(int index) {
-		if(index >= 0 && index < this.sesAttaques.length) {
-			this.sesAttaques[index] = null;
+		if(index >= 0 && index < this.sesAttaques.size()) {
+			this.sesAttaques.remove(index);
 		}
 		else {
 			System.out.println("Erreur, veuillez séléctionner une attaques.");
@@ -304,18 +310,18 @@ public class Pokemon {
 	}
 	
 	public void regarderAttaques() {		
-		for(int i=0; i < this.sesAttaques.length;i++) {
-			if (this.sesAttaques[i] != null) {
-				System.out.println(i + " : " + this.sesAttaques[i].getNom() + ", repetitions restantes " + this.sesAttaques[i].getRepetitionRest());
+		for(int i=0; i < this.sesAttaques.size();i++) {
+			if (this.sesAttaques.get(i) != null) {
+				System.out.println(i + " : " + this.sesAttaques.get(i).getNom() + ", repetitions restantes " + this.sesAttaques.get(i).getRepetitionRest());
 			}
 			i++;
 		}
 	}
 	
 	public void resetAttaques() {
-		for(int i=0; i < this.sesAttaques.length-1;i++) {
-			if(this.sesAttaques[i] != null) {
-				sesAttaques[i].resetRepetitions();
+		for(int i=0; i < this.sesAttaques.size()-1;i++) {
+			if(this.sesAttaques.get(i) != null) {
+				sesAttaques.get(i).resetRepetitions();
 			}
 		}
 	}
@@ -333,9 +339,9 @@ public class Pokemon {
 	
 	public void utiliseAttaque(int index, Pokemon victime) {
 		if(victime.sEstEvanoui() == false) {
-			if(index > 0 && index < sesAttaques.length) {
-				if(this.sesAttaques[index]!=null) {
-					this.sesAttaques[index].utiliser(this, victime);
+			if(index > 0 && index < sesAttaques.size()) {
+				if(this.sesAttaques.get(index)!=null) {
+					this.sesAttaques.get(index).utiliser(this, victime);
 				}
 				else {
 					System.out.println("Attaque non - valide !");
@@ -403,12 +409,16 @@ public class Pokemon {
 		this.frequency = frequency;
 	}
 
-	public Attaque[] getSesAttaques() {
+	public ArrayList<Attaque> getSesAttaques() {
 		return sesAttaques;
 	}
 
-	public void setSesAttaques(Attaque[] sesAttaques) {
-		this.sesAttaques = sesAttaques;
+	public void setSesAttaques(ArrayList<Attaque> sesAttaques) {
+		if(sesAttaques.size()<=4)
+			this.sesAttaques = sesAttaques;
+		else
+			System.out.println("votre ArrayList d entree est trop grande");
+		
 	}
 
 	public void setNom(String nom) {

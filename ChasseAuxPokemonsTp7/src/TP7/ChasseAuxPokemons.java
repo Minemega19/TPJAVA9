@@ -16,7 +16,7 @@ public class ChasseAuxPokemons {
 
 	public static void main(String[] args) {
 
-		final Pokemon piplup = new Pokemon("Piplup", "EAU", 5, false, null, null, 51, 53, 61, 56, 0, 0, new Attaque[] {new AttaqueTackle(), new AttaqueMorsure(), new AttaquePistoleEau(), new AttaqueEnfer()});
+		/*final Pokemon piplup = new Pokemon("Piplup", "EAU", 5, false, null, null, 51, 53, 61, 56, 0, 0, new Attaque[] {new AttaqueTackle(), new AttaqueMorsure(), new AttaquePistoleEau(), new AttaqueEnfer()});
 		final Pokemon rowlet = new Pokemon("Rowlet", "PLANTE", 10, true, null, null, 55, 55, 50, 55, 0, 0, new Attaque[] {new AttaqueMorsure(), new AttaqueFeinte(), new AttaqueTornadeFeuilles()});
 		final Pokemon totodile = new Pokemon("Totodile", "EAU", 8, false, null, null, 65, 64, 44, 48, 0, 0, new Attaque[] {new AttaqueBulle(), new AttaqueCoupDeTete()});
 
@@ -68,6 +68,6 @@ public class ChasseAuxPokemons {
 		System.out.println(cape);
 		
 		final ItemEquipable roller = new ItemEquipable("Roller", 30, 2,piplup);
-		System.out.println(roller);
+		System.out.println(roller);*/
 	}
 }
