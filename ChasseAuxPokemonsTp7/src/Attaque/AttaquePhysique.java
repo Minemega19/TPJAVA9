@@ -4,6 +4,11 @@ import TP7.Pokemon;
 
 public class AttaquePhysique extends Attaque {
 
+	@Override
+	public AttaquePhysique genAttaque() {
+		return new AttaquePhysique(getNom(), getPuissance(), getPrecision(), getRepetition());
+	}
+
 	public AttaquePhysique(String nom, int puissance, int precision, int repetitionsAttaque) {
 		super(nom, puissance, precision, repetitionsAttaque);
 	}

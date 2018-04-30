@@ -105,7 +105,5 @@ public abstract class Attaque {
 	public void setTypeCompatible(String[] typeCompatible) {
 		this.typeCompatible = typeCompatible;
 	}
-	
-	
-
+	public abstract Attaque genAttaque();
 }

@@ -16,7 +16,12 @@ public class AttaqueSpeciale extends Attaque {
 		}
 		return false;
 	}
-	
+
+	@Override
+	public AttaqueSpeciale genAttaque() {
+		return new AttaqueSpeciale(getNom(), getTypeCompatible(), getPuissance(), getPrecision(), getRepetition());
+	}
+
 	@Override
 	public void utiliser(Pokemon attaquant, Pokemon victime) {
 		
