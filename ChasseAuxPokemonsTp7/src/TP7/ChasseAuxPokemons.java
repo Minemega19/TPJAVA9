@@ -14,6 +14,7 @@ import Attaque.AttaqueTornadeFeuilles;
 import Item.Item;
 import Item.ItemEquipable;
 import Item.ItemVetement;
+import Plaque.PlaqueAtk;
 
 public class ChasseAuxPokemons {
 
@@ -22,7 +23,7 @@ public class ChasseAuxPokemons {
 		final Pokemon piplup = new Pokemon("Piplup", "EAU", 5, false, null, null, 51, 53, 61, 56, 0, 0, new ArrayList<Attaque>(Arrays.asList(new AttaqueTackle(), new AttaqueMorsure(), new AttaquePistoleEau(), new AttaqueEnfer())));
 		final Pokemon rowlet = new Pokemon("Rowlet", "PLANTE", 10, true, null, null, 55, 55, 50, 55, 0, 0, new ArrayList<Attaque>(Arrays.asList(new AttaqueMorsure(), new AttaqueFeinte(), new AttaqueTornadeFeuilles())));
 		final Pokemon totodile = new Pokemon("Totodile", "EAU", 8, false, null, null, 65, 64, 44, 48, 0, 0, new ArrayList<Attaque>(Arrays.asList(new AttaqueBulle(), new AttaqueCoupDeTete())));
-		 
+
 		final Joueur Adrien = new Joueur("Dupont", "Jean", 20, new Pokemon[5], new Item[15]);
 		final Joueur Louis = new Joueur("Martin", "Gabrielle", 18, new Pokemon[5], new Item[15]);
 				
@@ -68,9 +69,14 @@ public class ChasseAuxPokemons {
 		
 		// Tests des ajouts originaux
 		final ItemVetement cape = new ItemVetement("Cape", 30, 5,"Bleu");
-		System.out.println(cape);
+		piplup.attribue(cape);
+		System.out.println(piplup.getSonItem());
 		
 		final ItemEquipable roller = new ItemEquipable("Roller", 30, 2,piplup);
 		System.out.println(roller);
+		
+		final PlaqueAtk plaqueFeu = new PlaqueAtk("plaque feu", 30," feu");
+		rowlet.attribue(plaqueFeu);
+		rowlet.retirer();
 	}
 }
