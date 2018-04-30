@@ -48,7 +48,7 @@ public class ItemEquipable extends Item {
 	}
 	public void desequipe(){
 		if (this.pokemonEquipe!=null){
-			this.pokemonEquipe.retirer();
+			this.pokemonEquipe.setSonItem(null);
 			this.pokemonEquipe=null;
 			System.out.println("votre Item a ete desequipe");
 		}
